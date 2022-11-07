@@ -10,6 +10,7 @@ public class SpotifyApp {
 
 	public SpotifyApp() {
 		// TODO: read data from file top50spotify2019.csv and assign to spotifyRecores
+		spotifyRecords = SpotifyReader.loadSpotifyRecords(Path.of("src/main/resources/top50spotify2019.csv"));
 	}
 
 	// 1. get the number of spotify records in the list (no stream!)

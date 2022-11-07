@@ -2,13 +2,16 @@ package be.pxl.ja;
 
 public class SpotifyRecordMapper {
 
-    public static SpotifyRecord mapDataToSpotifyRecord(String line) {
+    public static SpotifyRecord mapDataToSpotifyRecord(String line) throws InvalidSpotifyRecordException {
         String[] data = line.split(";");
+        if (data.length != 14) {
+            throw new InvalidSpotifyRecordException("Error parsing spotify record [" + line + "]");
+        }
         SpotifyRecord spotifyRecord = new SpotifyRecord();
         spotifyRecord.setId(Integer.parseInt(data[0]));
         spotifyRecord.setTrackName(data[1]);
         spotifyRecord.setArtistName(data[2]);
-        spotifyRecord.setGenre(Genre.valueOf(data[3].replace(" ", "_").toUpperCase()));
+        spotifyRecord.setGenre(Genre.valueOf(data[3].replace(" ", "_").replace("&", "N").toUpperCase()));
         spotifyRecord.setBpm(Integer.parseInt(data[4]));
         spotifyRecord.setEnergy(Integer.parseInt(data[5]));
         spotifyRecord.setDanceability(Integer.parseInt(data[6]));

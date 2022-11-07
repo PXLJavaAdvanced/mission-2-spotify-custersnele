@@ -1,6 +1,6 @@
 package be.pxl.ja;
 
-public class SpotifyRecord {
+public class SpotifyRecord implements Comparable<SpotifyRecord>{
 	private int id;
 	private String trackName;
 	private String artistName;
@@ -138,4 +138,9 @@ public class SpotifyRecord {
 				'}';
 	}
 
+	@Override
+	public int compareTo(SpotifyRecord spotifyRecord) {
+		//return spotifyRecord.popularity - this.popularity; // subtraction is OK here!!
+		return Integer.compare(spotifyRecord.popularity, this.popularity);
+	}
 }

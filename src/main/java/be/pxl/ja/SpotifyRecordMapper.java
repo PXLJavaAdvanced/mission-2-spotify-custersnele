@@ -3,7 +3,7 @@ package be.pxl.ja;
 public class SpotifyRecordMapper {
 
     public static SpotifyRecord mapDataToSpotifyRecord(String line) {
-        String[] data = line.split(",");
+        String[] data = line.split(";");
         SpotifyRecord spotifyRecord = new SpotifyRecord();
         spotifyRecord.setId(Integer.parseInt(data[0]));
         spotifyRecord.setTrackName(data[1]);

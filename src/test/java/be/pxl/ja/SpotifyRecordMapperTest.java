@@ -1,43 +1,30 @@
 package be.pxl.ja;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SpotifyRecordMapperTest {
 
     @Test
     public void mapDataToSpotifyRecord() throws InvalidSpotifyRecordException {
-        String line = "32;7 rings;Ariana Grande;dance pop;140;32;78;-11;9;33;179;59;33;89";
+        String line = "Taylor Swift;Cruel Summer;False;2019-08-23;['pop'];0.552;0.564;0.702;-5.707;0.117;2.06e-05;0.105;0.157;9;169.994;1;178427;4;99";
         SpotifyRecord spotifyRecord = SpotifyRecordMapper.mapDataToSpotifyRecord(line);
-        assertEquals(32, spotifyRecord.getId());
-        assertEquals("7 rings", spotifyRecord.getTrackName());
-        assertEquals("Ariana Grande", spotifyRecord.getArtistName());
-        assertEquals(Genre.DANCE_POP, spotifyRecord.getGenre());
-        assertEquals(140, spotifyRecord.getBpm());
-        assertEquals(32, spotifyRecord.getEnergy());
-        assertEquals(78, spotifyRecord.getDanceability());
-        assertEquals(-11, spotifyRecord.getLoudness());
-        assertEquals(9, spotifyRecord.getLiveness());
-        assertEquals(33, spotifyRecord.getValence());
-        assertEquals(179, spotifyRecord.getLength());
-        assertEquals(59, spotifyRecord.getAcousticness());
-        assertEquals(33, spotifyRecord.getSpeechiness());
-        assertEquals(89, spotifyRecord.getPopularity());
-    }
-
-    @Test
-    public void mapDataToSpotifyRecordGenreWithSpecialCharacter() throws InvalidSpotifyRecordException {
-        String line = "45;Con Altura;ROSALIA;r&b en espanol;98;69;88;-4;5;75;162;39;12;88";
-        SpotifyRecord spotifyRecord = SpotifyRecordMapper.mapDataToSpotifyRecord(line);
-        assertEquals(Genre.RNB_EN_ESPANOL, spotifyRecord.getGenre());
-    }
-
-    @Test
-    public void mapDataToSpotifyRecordThrowsInvalidSpotifyRecordExceptionWhenDataIsMissing() {
-        String line = "45;Con Altura;ROSALIA;r&b en espanol;98;69;88;-4;5;75;162";
-        Assertions.assertThrows(InvalidSpotifyRecordException.class,
-                () -> SpotifyRecordMapper.mapDataToSpotifyRecord(line));
+        assertEquals("Cruel Summer", spotifyRecord.getTrackName());
+        assertEquals("Taylor Swift", spotifyRecord.getArtistName());
+        assertEquals(1, spotifyRecord.getGenres().size());
+	    assertEquals(List.of(Genre.POP), spotifyRecord.getGenres());
+        assertEquals(0.702, spotifyRecord.getEnergy());
+        assertEquals(0.552, spotifyRecord.getDanceability());
+        assertEquals(-5.707, spotifyRecord.getLoudness());
+        assertEquals(0.105, spotifyRecord.getLiveness());
+        assertEquals(0.564, spotifyRecord.getValence());
+        assertEquals(178427, spotifyRecord.getDuration());
+        assertEquals(0.117, spotifyRecord.getAcousticness());
+        assertEquals(0.157, spotifyRecord.getSpeechiness());
+        assertEquals(99, spotifyRecord.getPopularity());
     }
 }

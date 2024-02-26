@@ -1,31 +1,40 @@
 package be.pxl.ja;
 
-public class SpotifyRecord implements Comparable<SpotifyRecord>{
-	private int id;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+public class SpotifyRecord {
 	private String trackName;
 	private String artistName;
-	private Genre genre;
-	private int bpm;
-	private int energy;
-	private int danceability;
-	private int loudness;
-	private int liveness;
-	private int valence;
-	private int length;
-	private int acousticness;
-	private int speechiness;
+	private List<Genre> genres = new ArrayList<>();
+	private boolean explicit;
+	private LocalDate albumReleaseDate;
+	private double danceability;
+	private double valence;
+	private double energy;
+	private double loudness;
+	private double acousticness;
+	private double instrumentalness;
+	private double liveness;
+	private double speechiness;
+	private double key;
+	private double tempo;
+	private int mode;
+	private int duration;
+	private int timeSignature;
 	private int popularity;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getTrackName() {
 		return trackName;
+	}
+
+	public boolean isExplicit() {
+		return explicit;
+	}
+
+	public void setExplicit(boolean explicit) {
+		this.explicit = explicit;
 	}
 
 	public void setTrackName(String trackName) {
@@ -40,84 +49,133 @@ public class SpotifyRecord implements Comparable<SpotifyRecord>{
 		this.artistName = artistName;
 	}
 
-	public Genre getGenre() {
-		return genre;
+
+	public void setAlbumReleaseDate(LocalDate albumReleaseDate) {
+		this.albumReleaseDate = albumReleaseDate;
 	}
 
-	public void setGenre(Genre genre) {
-		this.genre = genre;
+	public LocalDate getAlbumReleaseDate() {
+		return albumReleaseDate;
 	}
 
-	public int getBpm() {
-		return bpm;
+	public void setGenre(List<Genre> genres) {
+		this.genres = genres;
 	}
 
-	public void setBpm(int bpm) {
-		this.bpm = bpm;
+	public void addGenre(Genre genre) {
+		genres.add(genre);
 	}
 
-	public int getEnergy() {
-		return energy;
+	public List<Genre> getGenres() {
+		return genres;
 	}
 
-	public void setEnergy(int energy) {
-		this.energy = energy;
+	public void setGenres(List<Genre> genres) {
+		this.genres = genres;
 	}
 
-	public int getDanceability() {
+	public double getDanceability() {
 		return danceability;
 	}
 
-	public void setDanceability(int danceability) {
+	public void setDanceability(double danceability) {
 		this.danceability = danceability;
 	}
 
-	public int getLoudness() {
-		return loudness;
-	}
-
-	public void setLoudness(int loudness) {
-		this.loudness = loudness;
-	}
-
-	public int getLiveness() {
-		return liveness;
-	}
-
-	public void setLiveness(int liveness) {
-		this.liveness = liveness;
-	}
-
-	public int getValence() {
+	public double getValence() {
 		return valence;
 	}
 
-	public void setValence(int valence) {
+	public void setValence(double valence) {
 		this.valence = valence;
 	}
 
-	public int getLength() {
-		return length;
+	public double getEnergy() {
+		return energy;
 	}
 
-	public void setLength(int length) {
-		this.length = length;
+	public void setEnergy(double energy) {
+		this.energy = energy;
 	}
 
-	public int getAcousticness() {
+	public double getLoudness() {
+		return loudness;
+	}
+
+	public void setLoudness(double loudness) {
+		this.loudness = loudness;
+	}
+
+	public double getAcousticness() {
 		return acousticness;
 	}
 
-	public void setAcousticness(int acousticness) {
+	public void setAcousticness(double acousticness) {
 		this.acousticness = acousticness;
 	}
 
-	public int getSpeechiness() {
+	public double getInstrumentalness() {
+		return instrumentalness;
+	}
+
+	public void setInstrumentalness(double instrumentalness) {
+		this.instrumentalness = instrumentalness;
+	}
+
+	public double getLiveness() {
+		return liveness;
+	}
+
+	public void setLiveness(double liveness) {
+		this.liveness = liveness;
+	}
+
+	public double getSpeechiness() {
 		return speechiness;
 	}
 
-	public void setSpeechiness(int speechiness) {
+	public void setSpeechiness(double speechiness) {
 		this.speechiness = speechiness;
+	}
+
+	public double getKey() {
+		return key;
+	}
+
+	public void setKey(double key) {
+		this.key = key;
+	}
+
+	public double getTempo() {
+		return tempo;
+	}
+
+	public void setTempo(double tempo) {
+		this.tempo = tempo;
+	}
+
+	public int getMode() {
+		return mode;
+	}
+
+	public void setMode(int mode) {
+		this.mode = mode;
+	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+	public int getTimeSignature() {
+		return timeSignature;
+	}
+
+	public void setTimeSignature(int timeSignature) {
+		this.timeSignature = timeSignature;
 	}
 
 	public int getPopularity() {
@@ -131,16 +189,9 @@ public class SpotifyRecord implements Comparable<SpotifyRecord>{
 	@Override
 	public String toString() {
 		return "SpotifyRecord{" +
-				"ID=" + id +
-				", trackName='" + trackName + '\'' +
+				"trackName='" + trackName + '\'' +
 				", artistName='" + artistName + '\'' +
 				", popularity=" + popularity +
 				'}';
-	}
-
-	@Override
-	public int compareTo(SpotifyRecord spotifyRecord) {
-		//return spotifyRecord.popularity - this.popularity; // subtraction is OK here!!
-		return Integer.compare(spotifyRecord.popularity, this.popularity);
 	}
 }

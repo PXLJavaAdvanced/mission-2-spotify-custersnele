@@ -15,7 +15,7 @@ public class SpotifyReader {
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String line = reader.readLine(); // ignore first line
             while ( (line = reader.readLine()) != null) {
-                System.out.println(line);
+              //  System.out.println(line);
                 try {
                     SpotifyRecord spotifyRecord = SpotifyRecordMapper.mapDataToSpotifyRecord(line);
                     spotifyRecords.add(spotifyRecord);
